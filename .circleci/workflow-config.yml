@@ -12,12 +12,8 @@ jobs:
       - run: echo "wf2"
 workflows:
   wf1:
-    when:
-      equal: [ "wf1", <<pipeline.parameters.wf>> ]
     jobs:
       - wf1
   wf2:
-    when:
-      equal: [ "wf2", <<pipeline.parameters.wf>> ]
     jobs:
       - wf2
