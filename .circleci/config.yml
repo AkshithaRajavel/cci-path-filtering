@@ -1,11 +1,22 @@
 version: '2.1'
 setup: true
+orbs:
+  path-filtering: circleci/path-filtering@0.1.7
 parameters:
   wf:
     type: string
     default: ""
-orbs:
-  path-filtering: circleci/path-filtering@0.1.7
+jobs:
+  wf1:
+    docker:
+      - image: cimg/base:2021.05
+    steps:
+      - run: echo "wf1"
+  wf2:
+    docker:
+      - image: cimg/base:2021.05
+    steps:
+      - run: echo "wf2"
 workflows:
   filter:
     when:
