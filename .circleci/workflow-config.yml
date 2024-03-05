@@ -1,0 +1,23 @@
+version: '2.1'
+jobs:
+  wf1:
+    docker:
+      - image: cimg/base:2021.05
+    steps:
+      - run: echo "wf1"
+  wf2:
+    docker:
+      - image: cimg/base:2021.05
+    steps:
+      - run: echo "wf2"
+workflows:
+  wf1:
+    when:
+      equal: [ "wf1", <<pipeline.parameters.skipUnitTests>> ]
+    jobs:
+      - wf1
+  wf2:
+    when:
+      equal: [ "wf1", <<pipeline.parameters.skipUnitTests>> ]
+    jobs:
+      - wf2
