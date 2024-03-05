@@ -1,4 +1,8 @@
 version: '2.1'
+parameters:
+  wf:
+    type: string
+    default: ""
 jobs:
   wf1:
     docker:
@@ -12,8 +16,12 @@ jobs:
       - run: echo "wf2"
 workflows:
   wf1:
+    when:
+      equal: [<< pipeline.parameters.wf >>, "wf1"]
     jobs:
       - wf1
   wf2:
+    when:
+      equal: [<< pipeline.parameters.wf >>, "wf2"]
     jobs:
       - wf2
