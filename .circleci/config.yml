@@ -1,13 +1,28 @@
 version: '2.1'
 setup: true
+parameters:
+  wf:
+    type: string
+    default: ""
 orbs:
   path-filtering: circleci/path-filtering@0.1.7
 workflows:
   filter:
+    when:
+      equal: [<< pipeline.parameters.wf >>, ""]
     jobs:
       - path-filtering/filter:
           base-revision: main
-          config-path: .circleci/workflow-config.yml
           mapping: |
-            workflow1/.* wf "wf1"
-            workflow2/.* wf "wf2"
+            workflow1/.* wf "wf1" .circleci/config.yml
+            workflow2/.* wf "wf2" .circleci/config.yml
+  wf1:
+    when:
+      equal: [<< pipeline.parameters.wf >>, "wf1"]
+    jobs:
+      - wf1
+  wf2:
+    when:
+      equal: [<< pipeline.parameters.wf >>, "wf2"]
+    jobs:
+      - wf2
