@@ -13,11 +13,11 @@ jobs:
 workflows:
   wf1:
     when:
-      equal: [ "wf1", <<pipeline.parameters.skipUnitTests>> ]
+      equal: [ "wf1", <<pipeline.parameters.wf>> ]
     jobs:
       - wf1
   wf2:
     when:
-      equal: [ "wf1", <<pipeline.parameters.skipUnitTests>> ]
+      equal: [ "wf2", <<pipeline.parameters.wf>> ]
     jobs:
       - wf2
