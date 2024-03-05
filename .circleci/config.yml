@@ -5,7 +5,7 @@ orbs:
 parameters:
   wf:
     type: string
-    default: ""
+    default: "filter"
 jobs:
   wf1:
     docker:
@@ -20,13 +20,15 @@ jobs:
 workflows:
   filter:
     when:
-      equal: [<< pipeline.parameters.wf >>, ""]
+      equal: [<< pipeline.parameters.wf >>, "filter"]
     jobs:
       - path-filtering/filter:
           base-revision: main
+          config-path: .circleci/config.yml
           mapping: |
-            workflow1/.* wf "wf1" .circleci/config.yml
-            workflow2/.* wf "wf2" .circleci/config.yml
+            .circleci/.* wf "exit" 
+            workflow1/.* wf "wf1" 
+            workflow2/.* wf "wf2" 
   wf1:
     when:
       equal: [<< pipeline.parameters.wf >>, "wf1"]
