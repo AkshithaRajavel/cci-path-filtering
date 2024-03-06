@@ -6,10 +6,11 @@ jobs:
     steps:
       - checkout
       - run: |
+          dirs=()
           git diff --name-only HEAD~1 HEAD | while read -r file; do
-          root_dir=$(dirname "$file")
-          echo "Root directory of $file: $root_dir"
+          dirs+=$(dirname "$file")
           done
+          echo $dirs
 
 workflows:
   filter:
