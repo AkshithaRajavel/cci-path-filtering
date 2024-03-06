@@ -6,7 +6,8 @@ jobs:
     steps:
       - checkout
       - run: |
-          git diff --name-only HEAD HEAD~1 | xargs -I % dirname % 
+          changed_dirs=$(git diff --name-only HEAD HEAD~1 | xargs -I % dirname % )
+          echo $changed_dirs
 
 workflows:
   filter:
