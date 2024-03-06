@@ -1,29 +1,13 @@
 version: '2.1'
+setup: true
 orbs:
   path-filtering: circleci/path-filtering@0.1.7
-parameters:
-  wf:
-    type: string
-    default: "filter"
-jobs:
-  wf1:
-    docker:
-      - image: cimg/base:2021.05
-    steps:
-      - run: echo "wf1"
-  wf2:
-    docker:
-      - image: cimg/base:2021.05
-    steps:
-      - run: echo "wf2"
 workflows:
   filter:
-    when:
-      equal: [<< pipeline.parameters.wf >>, "filter"]
     jobs:
       - path-filtering/filter:
           base-revision: main
-          config-path: .circleci/workflows.yml
+          config-path: .circleci/workflows-config.yml
           mapping: |
             workflow1/.* wf "wf1" 
             workflow2/.* wf "wf2" 
