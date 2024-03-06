@@ -17,11 +17,11 @@ jobs:
 workflows:
   wf1:
     when:
-      equal: [<< pipeline.parameters.wf >>, "wf1"]
+      equal: [<< pipeline.parameters.wf >>, wf1]
     jobs:
       - wf1
   wf2:
     when:
-      equal: [<< pipeline.parameters.wf >>, "wf2"]
+      equal: [<< pipeline.parameters.wf >>, wf2]
     jobs:
       - wf2
