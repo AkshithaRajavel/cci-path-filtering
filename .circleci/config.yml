@@ -12,7 +12,8 @@ jobs:
           dirs+=("$dir")
           done
           echo "List of root directories:"
-          for dir in "${dirs[@]}"; do
+          list=("apple" "banana" "orange" "grape")
+          for dir in "${list[@]}"; do
           echo "DIR: $dir"
           done
 
