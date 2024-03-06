@@ -23,18 +23,7 @@ workflows:
     jobs:
       - path-filtering/filter:
           base-revision: main
-          config-path: .circleci/config.yml
+          config-path: .circleci/workflows.yml
           mapping: |
-            .circleci/.* wf "exit" 
             workflow1/.* wf "wf1" 
             workflow2/.* wf "wf2" 
-  wf1:
-    when:
-      equal: [<< pipeline.parameters.wf >>, "wf1"]
-    jobs:
-      - wf1
-  wf2:
-    when:
-      equal: [<< pipeline.parameters.wf >>, "wf2"]
-    jobs:
-      - wf2
