@@ -8,7 +8,7 @@ jobs:
       - run: |
           dirs=()
           git diff --name-only HEAD~1 HEAD | while read -r file; do
-          dirs+=($(dirname "$file"))
+          dirs+=("$(dirname "$file")"")
           done
           echo "List of root directories:"
           printf '%s\n' "${dirs[@]}"
