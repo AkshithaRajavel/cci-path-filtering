@@ -10,10 +10,6 @@ jobs:
           echo $changed_dirs
 
 workflows:
-  version: 2
   filter:
     jobs:
       - build
-          paths:
-            only:
-              - ./workflow1/*
