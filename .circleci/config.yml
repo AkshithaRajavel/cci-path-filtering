@@ -5,7 +5,11 @@ jobs:
       - image: cimg/base:2023.03
     steps:
       - checkout
-      - run: git diff --name-only HEAD~1 HEAD
+      - run: |
+          git diff --name-only HEAD~1 HEAD | while read -r file; do
+          root_dir=$(dirname "$file")
+          echo "Root directory of $file: $root_dir"
+          done
 
 workflows:
   filter:
