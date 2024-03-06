@@ -8,12 +8,12 @@ jobs:
     docker:
       - image: cimg/base:2021.05
     steps:
-      - run: echo "wf1"
+      - run: pwd
   wf2:
     docker:
       - image: cimg/base:2021.05
     steps:
-      - run: echo "wf2"
+      - run: pwd
 workflows:
   wf1:
     when:
