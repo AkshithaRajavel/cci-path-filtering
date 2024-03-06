@@ -8,13 +8,12 @@ jobs:
       - run: |
           dirs=()
           git diff --name-only HEAD~1 HEAD | while read -r file; do
-          dir=$(dirname "$file")
-          dirs+=("$dir")
+              dir=$(dirname "$file")
+              dirs+=("$dir")
           done
           echo "List of root directories:"
-          list=("apple" "banana" "orange" "grape")
-          for dir in "${list[@]}"; do
-          echo "DIR: $dir"
+          for dir in "${dirs[@]}"; do
+              echo "DIR: $dir"
           done
 
 workflows:
