@@ -6,8 +6,7 @@ jobs:
     steps:
       - checkout
       - run: |
-          changed_dirs=$(git diff --name-only $CIRCLE_SHA1 $CIRCLE_PREVIOUS_SHA1 | xargs -I % dirname % )
-          echo $changed_dirs
+          git diff --name-only $CIRCLE_SHA1 $CIRCLE_PREVIOUS_SHA1 | xargs -I % dirname % 
 
 workflows:
   filter:
