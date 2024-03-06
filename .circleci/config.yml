@@ -11,7 +11,7 @@ jobs:
           dirs+=$(dirname "$file")
           done
           echo "List of root directories:"
-          printf '%s\n' "${root_dirs[@]}"
+          printf '%s\n' "${dirs[@]}"
 
 workflows:
   filter:
