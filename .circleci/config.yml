@@ -12,7 +12,9 @@ jobs:
           dirs+=("$dir")
           done
           echo "List of root directories:"
-          printf '%s\n' "${dirs[@]}"
+          for dir in "${dirs[@]}"; do
+          echo "DIR: $dir"
+          done
 
 workflows:
   filter:
