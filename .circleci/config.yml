@@ -5,9 +5,7 @@ jobs:
       - image: cimg/base:2023.03
     steps:
       - checkout
-      - run: |
-          changed_dirs=$(git diff --name-only HEAD HEAD~1 | xargs -I % dirname % )
-          echo $changed_dirs
+      - run: git diff --name-only HEAD HEAD~1 | xargs -I % dirname % xargs make
 
 workflows:
   filter:
