@@ -5,6 +5,7 @@ jobs:
       - image: cimg/base:2023.02
     steps:
       - checkout
+      - run: export commit_hash=$(git rev-parse --short HEAD)
       - run: git diff --name-only HEAD HEAD~1 | xargs -I % dirname % | xargs make
       - run: docker
 
