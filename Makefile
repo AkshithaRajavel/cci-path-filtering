@@ -1,3 +1,4 @@
+TAG = $(shell git rev-parse --short HEAD)
 workflow1:
-	echo ${commit_hash}
+	echo $(TAG)
 .PHONY: workflow1
