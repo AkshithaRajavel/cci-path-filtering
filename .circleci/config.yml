@@ -10,7 +10,7 @@ jobs:
     steps:
       - checkout
       - run: git diff --name-only HEAD HEAD~1 | xargs -I % dirname % | xargs make
-      - run: echo $(parameters.publish)
+      - run: echo $publish
       
 
 workflows:
