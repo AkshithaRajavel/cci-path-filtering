@@ -19,7 +19,7 @@ jobs:
             equal: [<< parameters.publish >>, main]
           steps:
             - run: echo "Publishing to main"
-      - run: echo "Building with tag $TAGANCH"
+      - run: echo << parameters.publish >>
       
 
 workflows:
