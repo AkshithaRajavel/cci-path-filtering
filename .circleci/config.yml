@@ -1,10 +1,6 @@
 version: '2.1'
 jobs:
   filter:
-    parameters:
-      publish:
-        type: string
-        default: TAGANCH
     docker:
       - image: cimg/base:2023.02
     steps:
@@ -23,6 +19,7 @@ jobs:
             equal: [<< parameters.publish >>, main]
           steps:
             - run: echo "Publishing to main"
+      - run: echo "Building with tag $TAGANCH"
       
 
 workflows:
