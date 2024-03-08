@@ -1,6 +1,6 @@
 version: '2.1'
 jobs:
-  build:
+  filter:
     parameters:
       publish:
         type: string
@@ -10,14 +10,22 @@ jobs:
     steps:
       - checkout
       - run: echo "export TAGANCH=<< pipeline.git.branch >>" >> $BASH_ENV
+  build:
+    parameters:
+      publish:
+        type: string
+        default: "test"
+    steps:
       - when:
-          condition:
-            equal: [${<< parameters.publish >>}, main]
+          condition: 
+            equal: [<< parameters.publish >>, main]
           steps:
             - run: echo "Publishing to main"
       
 
 workflows:
-  filter:
+  main:
     jobs:
-      - build
+      - filter
+      - build:
+          publish: ${TAGANCH}
