@@ -1,4 +1,17 @@
 version: '2.1'
+commands:
+  build:
+    parameters:
+      publish:
+        type: string
+        default: "test"
+    steps:
+      - when:
+          condition:
+            equal: ["<< parameters.publish >>", "main"]
+          steps:
+            - run: echo "This is the main branch"
+      - run: echo << parameters.publish >>
 jobs:
   filter:
     docker:
@@ -6,27 +19,11 @@ jobs:
     steps:
       - checkout
       - run: echo "export TAGANCH=<< pipeline.git.branch >>" >> $BASH_ENV
-  build:
-    docker:
-      - image: cimg/base:2023.02
-    parameters:
-      publish:
-        type: string
-        default: "test"
-    steps:
-      - when:
-          condition: 
-            equal: [<< parameters.publish >>, main]
-          steps:
-            - run: echo "Publishing to main"
-      - run: echo << parameters.publish >>
+      - build:
+          publish: ${TAGANCH}
       
 
 workflows:
   main:
     jobs:
       - filter
-      - build:
-          publish: ${TAGANCH}
-          requires: 
-            - filter
