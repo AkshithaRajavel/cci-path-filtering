@@ -4,11 +4,12 @@ jobs:
     parameters:
       publish:
         type: string
-        default: "test"
+        default: TAGANCH
     docker:
       - image: cimg/base:2023.02
     steps:
       - checkout
+      - run: echo "export TAGANCH=<< pipeline.git.branch >>" >> $BASH_ENV
       - run: echo << parameters.publish >>
       
 
