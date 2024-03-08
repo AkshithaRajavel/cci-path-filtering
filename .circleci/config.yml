@@ -10,7 +10,7 @@ jobs:
     steps:
       - checkout
       - run: echo "export TAGANCH=<< pipeline.git.branch >>" >> $BASH_ENV
-      - run: echo << parameters.publish >>
+      - run: echo ${<< parameters.publish >>}
       
 
 workflows:
