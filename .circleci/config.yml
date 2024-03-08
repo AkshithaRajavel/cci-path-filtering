@@ -28,3 +28,4 @@ workflows:
       - filter
       - build:
           publish: ${TAGANCH}
+          requires: filter
