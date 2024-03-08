@@ -1,6 +1,11 @@
 version: '2.1'
 jobs:
   filter:
+    parameters:
+      tags:
+        default: v${CIRCLE_SHA1:0:7}
+        description: Comma-separated tags to create and push
+        type: string
     docker:
       - image: cimg/base:2023.02
     steps:
@@ -9,9 +14,6 @@ jobs:
           command: echo $TAGANCH
           environment:
             TAGANCH: "v${CIRCLE_SHA1:0:7}"
-
-      
-
 workflows:
   main:
     jobs:
