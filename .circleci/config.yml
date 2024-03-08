@@ -11,6 +11,8 @@ jobs:
       - checkout
       - run: echo "export TAGANCH=<< pipeline.git.branch >>" >> $BASH_ENV
   build:
+    docker:
+      - image: cimg/base:2023.02
     parameters:
       publish:
         type: string
