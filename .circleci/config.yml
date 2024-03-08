@@ -1,26 +1,15 @@
 version: '2.1'
-commands:
-  build:
-    parameters:
-      publish:
-        type: string
-        default: "test"
-    steps:
-      - when:
-          condition:
-            equal: ["<< parameters.publish >>", "main"]
-          steps:
-            - run: echo "This is the main branch"
-      - run: echo << parameters.publish >>
 jobs:
   filter:
     docker:
       - image: cimg/base:2023.02
     steps:
       - checkout
-      - run: echo "export TAGANCH=<< pipeline.git.branch >>" >> $BASH_ENV
-      - build:
-          publish: ${TAGANCH}
+      - run:
+          command: echo $TAGANCH
+          environment:
+            TAGANCH: "v${CIRCLE_SHA1:0:7}"
+
       
 
 workflows:
