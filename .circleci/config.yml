@@ -9,7 +9,7 @@ jobs:
       - image: cimg/base:2023.02
     steps:
       - checkout
-      - run: echo "${{ parameters.publish }}"
+      - run: echo << parameters.publish >>
       
 
 workflows:
