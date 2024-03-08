@@ -13,7 +13,7 @@ jobs:
       - run:
           command: echo $TAGANCH
           environment:
-            TAGANCH: "v${CIRCLE_SHA1:0:7}"
+            TAGANCH: v<< parameters.tags >>
 workflows:
   main:
     jobs:
